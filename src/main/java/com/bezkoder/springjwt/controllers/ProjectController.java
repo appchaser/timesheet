@@ -35,7 +35,7 @@ public class ProjectController {
 
 	@GetMapping("/get/{id}")
 	@ResponseBody
-	public ResponseEntity<ProjectDTO> getDepByID(@PathVariable("id") int id){
+	public ResponseEntity<ProjectDTO> getProjByID(@PathVariable("id") int id){
 		ProjectDTO dep = projectServiceImp.getproject(id);
 		                  
 		return new ResponseEntity<ProjectDTO>(dep, HttpStatus.OK);

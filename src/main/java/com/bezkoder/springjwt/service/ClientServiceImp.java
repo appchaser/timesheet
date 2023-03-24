@@ -2,9 +2,12 @@ package com.bezkoder.springjwt.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.bezcoder.springjwt.dto.ClientDto;
+import com.bezcoder.springjwt.dto.ProjectDt;
 import com.bezkoder.springjwt.models.Client;
 import com.bezkoder.springjwt.models.Project;
 import com.bezkoder.springjwt.repository.ClientRepository;
@@ -20,6 +23,20 @@ public class ClientServiceImp  {
 
 	public List<Client> getAll() {
 		return clientRepository.findAll();
+	}
+	
+	public ClientDto getclientproject(Long id){
+		Client client=clientRepository.findById(id).get();
+		ClientDto clientdto=new ClientDto();
+		
+		clientdto.setId(id);
+		clientdto.setName(client.getName());
+		clientdto.setProjects(client.getProjects().stream().map(e->new ProjectDt(
+				e.getId(), e.getName()
+				)).collect(Collectors.toList()));
+		
+		return clientdto;
+		
 	}
 
 	public Optional<Client> getClientById(long id) {

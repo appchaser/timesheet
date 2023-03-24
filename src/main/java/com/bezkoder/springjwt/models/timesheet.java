@@ -87,14 +87,14 @@ public class timesheet implements Serializable {
 	   private float date7_hours;
 	 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnore
+	
 	private Project project;
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Client> clients;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_user")
+	@ManyToOne(cascade = CascadeType.ALL)
+
 	private User user;
 
 }

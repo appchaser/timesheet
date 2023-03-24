@@ -29,6 +29,20 @@ public class TimeSheetController {
 	public ResponseEntity<?> getById(@PathVariable("idtimeSheet") long idtimeSheet) {
 		return ResponseEntity.ok(timeSheetServiceImp.getTimeSheetById(idtimeSheet));
 	}
+	
+	@PostMapping("/addProjectToTimesheet/{idProject}/{idTimesheet}")
+	@ResponseBody
+	public ResponseEntity<?> addProjectToTimeSheet(@PathVariable("idProject") long idProject,@PathVariable("idTimesheet") long idTimesheet){
+		
+		return ResponseEntity.ok(timeSheetServiceImp.addProjectToTimesheet(idProject,idTimesheet));
+	}
+	@PostMapping("/adduserToTimesheet/{iduser}/{idTimesheet}")
+	@ResponseBody
+	public ResponseEntity<?> adduserToTimeSheet(@PathVariable("iduser") long iduser,@PathVariable("idTimesheet") long idTimesheet){
+	
+		return ResponseEntity.ok(timeSheetServiceImp.addTimeSheetToUser(iduser,idTimesheet));
+	}
+	
 	@DeleteMapping("/timeshhet/{id}")
 	public void deletetimesheet(@PathVariable("id") long id){
 		 timeSheetServiceImp.delete(id);

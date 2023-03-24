@@ -1,5 +1,7 @@
 package com.bezkoder.springjwt.security.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,8 +33,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
          public User ajoutUser(User user, Long idTimesheet){
        timesheet Timesheet = timesheetRepository.findById(idTimesheet).get();
+       List<timesheet> list=user.getTimesheet();
+       list.add(Timesheet);
+       user.setTimesheet(list);
        
-           user.setTimesheet(Timesheet);
             return userRepository.save(user);
 }
          

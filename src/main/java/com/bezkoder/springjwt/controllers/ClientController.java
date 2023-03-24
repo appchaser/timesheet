@@ -39,7 +39,11 @@ public class ClientController {
 	public ResponseEntity<?> getById(@PathVariable("idClient") long idClient) {
 		return ResponseEntity.ok(clientServiceImp.getClientById(idClient));
 	}
-
+	@GetMapping("/project/{idcli}")
+	@ResponseBody
+	public ResponseEntity<?> getclientproject(@PathVariable("idcli") Long id ){
+		return ResponseEntity.ok(clientServiceImp.getclientproject(id));
+	}
 	@GetMapping("/getAll")
 	@ResponseBody
 	public ResponseEntity<?> getAll() {

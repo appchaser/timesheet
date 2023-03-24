@@ -37,8 +37,8 @@ public class ProjectServiceImp {
 		
 		projdto.setUsers(proj.getUsers().stream()
 				.map(e-> new UserDTO(e.getUsername(), e.getEmail(),e.getRoles())).collect(Collectors.toList()));
-		
-		projdto.setProjectname(proj.getName());
+		        
+		projdto.setProjectname(proj.getName()); 
 		projdto.setId(proj.getId());
 		return projdto;
 	}

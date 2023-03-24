@@ -34,12 +34,10 @@ public class DepartementService {
 	public DepartementDTO getDepartementById(int id){
 		Departement dep = departementRepository.findById(id).get();
 		DepartementDTO depDto = new DepartementDTO();
-
-		//depDto.setUsersname(dep.getUsers().stream().map(e-> e.getUsername()).collect(Collectors.toList()));
        
        depDto.setUsers(dep.getUsers().stream()
 		.map(e-> new UserDTO(e.getUsername(), e.getEmail(),e.getRoles())).collect(Collectors.toList()));
-   //  depDto.setRole(dep.getUsers().stream().map(e-> e.getRoles()).collect(Collectors.toList()));
+   
        
 		depDto.setDepartname(dep.getName());
 		depDto.setId(dep.getId());

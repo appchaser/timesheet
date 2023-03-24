@@ -20,6 +20,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -43,11 +45,13 @@ public class User {
 	@Email
 	private String email;
 
-	// private String super_user;
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Project> projects;
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private timesheet timesheet;
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<timesheet> timesheet;
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private Departement departement;
 	@NotBlank
