@@ -29,7 +29,7 @@ public class Activity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String shortName;
-	/*@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Project> projects;*/
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Project> projects;
 	
 }

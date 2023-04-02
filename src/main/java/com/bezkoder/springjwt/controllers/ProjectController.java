@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bezcoder.springjwt.dto.DepartementDTO;
 import com.bezcoder.springjwt.dto.ProjectDTO;
 import com.bezkoder.springjwt.models.Project;
+import com.bezkoder.springjwt.repository.ProjectRepository;
 import com.bezkoder.springjwt.service.ProjectServiceImp;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -26,11 +27,18 @@ public class ProjectController {
 
 	@Autowired
 	ProjectServiceImp projectServiceImp;
+	
 
 	@GetMapping("/{idProject}")
 	@ResponseBody
 	public ResponseEntity<?> getProjectById(@PathVariable("idProject") long idProject) {
 		return ResponseEntity.ok(projectServiceImp.getProjectById(idProject));
+	}
+	
+	@GetMapping("/getactivity/{id}")
+	@ResponseBody
+	public ResponseEntity<?> getActivityProject(@PathVariable("id") long idprojet){
+		return ResponseEntity.ok(projectServiceImp.getprojectactivity(idprojet));
 	}
 
 	@GetMapping("/get/{id}")
@@ -67,11 +75,11 @@ public class ProjectController {
 		return ResponseEntity.ok("project deleted");
 	}
 
-/*	@PostMapping("/addactivitytoproject/{idProject}/{idActivity}")
+	@PostMapping("/addactivitytoproject/{idProject}/{idActivity}")
 	@ResponseBody
 	public ResponseEntity<?> addClientToProject(@PathVariable("idProject") long idProject,
 			@PathVariable("idActivity") long idActivity) {
 		projectServiceImp.addActivityProject(idActivity, idProject);
-		return ResponseEntity.ok("Done!!");
-	}*/
+		return ResponseEntity.ok("activity affected to project" );
+	}
 }

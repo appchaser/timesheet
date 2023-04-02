@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bezcoder.springjwt.dto.ActivityDto;
 import com.bezcoder.springjwt.dto.ProjectDTO;
+import com.bezcoder.springjwt.dto.ProjectDt;
 import com.bezcoder.springjwt.dto.UserDTO;
 import com.bezkoder.springjwt.models.Activity;
 import com.bezkoder.springjwt.models.Project;
@@ -19,14 +21,27 @@ import lombok.AllArgsConstructor;
 public class ProjectServiceImp {
 	@Autowired
 	private ProjectRepository projectRepository;
-	/*@Autowired
-	private ActivityServiceImp  activityServiceImp;*/
+	@Autowired
+	private ActivityServiceImp  activityServiceImp;
 
 
+	public ProjectDt getprojectactivity(Long id){
+		Project project = projectRepository.findById(id).get();
+		ProjectDt projectDt= new ProjectDt();
+		
+		projectDt.setId(id);
+		projectDt.setName(project.getName());
+		projectDt.setActivity(project.getActivities().stream().map(e-> new ActivityDto(e.getId(), e.getShortName()
+				)).collect(Collectors.toList()));
+		
+		
+		return projectDt;
+	}
+	
 	public List<Project> getAll() {
 		return projectRepository.findAll();
 	}
-
+     
 	public Optional<Project> getProjectById(long id) {
 		return projectRepository.findById(id);
 	}
@@ -55,7 +70,7 @@ public class ProjectServiceImp {
 		projectRepository.delete(project);
 	}
 
-	/*public void addActivityProject(long idActivity, long idProject) {
+	public void addActivityProject(long idActivity, long idProject) {
 		Project project = this.getProjectById(idProject).orElse(null);
 		
 		Activity activity = activityServiceImp.getActivityById(idActivity).orElse(null);
@@ -67,6 +82,6 @@ public class ProjectServiceImp {
 		activities.add(activity);
 		project.setActivities(activities);
 		this.updateProject(project);
-	}*/
+	}
 
 }

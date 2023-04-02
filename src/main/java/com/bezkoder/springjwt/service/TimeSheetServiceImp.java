@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,9 @@ public TimeSheetServiceImp(TimesheetRepository timesheetRepository,ProjectReposi
 	public timesheet addProjectToTimesheet(long idproject,long idTimesheet) {
 		
 		timesheet timesheet=this.getTimeSheetById(idTimesheet).get();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		userRepository.findByUsername(authentication.getName());
+		
 		Project project=projectRepository.findById(idproject).get();
 		timesheet.setProject(project);
 		List<timesheet> list=project.getTimesheets();

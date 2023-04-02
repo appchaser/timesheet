@@ -1,11 +1,27 @@
 package com.bezcoder.springjwt.dto;
 
+import java.util.List;
+
 public class ProjectDt {
 	
 	private Long id;
 	private String name;
+	private List<ActivityDto> activity;
+	 
 	
+	public List<ActivityDto> getActivity() {
+		return activity;
+	}
+
+	public void setActivity(List<ActivityDto> activity) {
+		this.activity = activity;
+	}
+
 	
+
+	public ProjectDt() {
+		
+	}
 
 	public ProjectDt(Long id, String name) {
 		super();

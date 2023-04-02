@@ -37,7 +37,7 @@ public class Project {
 	@JsonIgnore
 	private Date startDate;
 	@JsonIgnore
-	private Date endDate;
+	private Date endDate;  
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
 	private List<User> users;   
@@ -47,7 +47,7 @@ public class Project {
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY) 
 	private List<Client> clients;     
-	/*@JsonIgnore
+	@JsonIgnore      
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Activity> activities;*/
+	private List<Activity> activities;
 }
