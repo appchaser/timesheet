@@ -45,7 +45,7 @@ public class User {
 	@Email
 	private String email;
 
-	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Project> projects;
 	@JsonIgnore

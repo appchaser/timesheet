@@ -36,11 +36,12 @@ public class TimeSheetController {
 		
 		return ResponseEntity.ok(timeSheetServiceImp.addProjectToTimesheet(idProject,idTimesheet));
 	}
-	@PostMapping("/adduserToTimesheet/{iduser}/{idTimesheet}")
+	@PostMapping("/adduserToTimesheet/{iduser}/{idTimesheet}/{idproject}/{idclient}/{idactivity}")
 	@ResponseBody
-	public ResponseEntity<?> adduserToTimeSheet(@PathVariable("iduser") long iduser,@PathVariable("idTimesheet") long idTimesheet){
+	public ResponseEntity<?> adduserToTimeSheet(@PathVariable("iduser") long iduser,@PathVariable("idTimesheet") long idTimesheet,
+		@PathVariable("idproject") long idproject,@PathVariable("idclient") long idclient,@PathVariable ("idactivity") long idactivity	){
 	
-		return ResponseEntity.ok(timeSheetServiceImp.addTimeSheetToUser(iduser,idTimesheet));
+		return ResponseEntity.ok(timeSheetServiceImp.addTimeSheetToUser(iduser,idTimesheet,idproject,idclient,idactivity));
 	}
 	
 	@DeleteMapping("/timeshhet/{id}")
@@ -54,10 +55,10 @@ public class TimeSheetController {
 		return ResponseEntity.ok(timeSheetServiceImp.getAll());
 	}
 
-	@PostMapping("/addtimeSheet")
+	@PostMapping("/addtimeSheet/{idProject}/{idUser}/{idActivity}/{idClient}")
 	@ResponseBody
-	public ResponseEntity<?> addTimeSheet(@RequestBody timesheet timesheet) {
-		return ResponseEntity.ok(timeSheetServiceImp.addTimeSheet(timesheet));
+	public ResponseEntity<?> addTimeSheet(@RequestBody timesheet timesheet, @PathVariable("idProject") long idProject, @PathVariable("idUser") long idUser, @PathVariable("idActivity") long idActivity, @PathVariable("idClient") long idClient) {
+		return ResponseEntity.ok(timeSheetServiceImp.addTimeSheet(timesheet, idProject, idUser, idActivity, idClient));
 	}
 
 	@PutMapping("/updatetimesheet")

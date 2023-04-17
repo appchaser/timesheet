@@ -30,6 +30,8 @@ public class Activity {
 	private long id;
 	private String shortName;
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Project> projects;
-	
+	private List<Project> projects; 
+	/*@ElementCollection()
+	private List<timesheet> timesheets;*/
+
 }

@@ -1,10 +1,12 @@
 package com.bezkoder.springjwt.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +27,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+//@NoArgsConstructor
 @Entity
 @ToString
 public class Project {
@@ -41,13 +43,30 @@ public class Project {
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
 	private List<User> users;   
-	@JsonIgnore
-	@OneToMany(cascade =CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<timesheet> timesheets;
+	
+	
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY) 
 	private List<Client> clients;     
 	@JsonIgnore      
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Activity> activities;
+	
+	@ElementCollection()
+	private List<timesheet> timesheets;
+	  public Project() {
+	        timesheets = new ArrayList<>();
+	    }
+
+	    public void addTimeSheet(timesheet timeSheet) {
+	        timesheets.add(timeSheet);
+	    }
+
+	    public List<timesheet> getTimeSheets() {
+	        return timesheets;
+	    }
+
+	    public void setTimeSheets(List<timesheet> timeSheets) {
+	        this.timesheets = timeSheets;
+	    }
 }
