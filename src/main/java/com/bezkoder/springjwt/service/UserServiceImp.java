@@ -26,11 +26,13 @@ public class UserServiceImp {
 	private ProjectServiceImp projectServiceImp;
 	private DepartementRepository departementrepository;
 	private DepartementService departementservice;
-public UserServiceImp(UserRepository userRepository, ProjectServiceImp projectServiceImp) {
+public UserServiceImp(UserRepository userRepository, DepartementService departementservice, ProjectServiceImp projectServiceImp, DepartementRepository departementrepository) {
 	// TODO Auto-generated constructor stub
 	this.projectServiceImp=projectServiceImp;
 	this.userRepository=userRepository;
-}
+	this.departementrepository= departementrepository;
+	this.departementservice= departementservice;
+ }
 	public List<User> getAll() {
 		return userRepository.findAll();
 	}
@@ -64,7 +66,7 @@ public UserServiceImp(UserRepository userRepository, ProjectServiceImp projectSe
 		user.setProjects(projects);
 		this.updateUser(user);
 		projectServiceImp.updateProject(project);
-
+        
 	}
 	
 	public void addUserToDepartment(int idDepartment,long idUser) {
