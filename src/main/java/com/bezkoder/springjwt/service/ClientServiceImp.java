@@ -47,12 +47,12 @@ public class ClientServiceImp  {
 		return clientRepository.save(client);
 	}
 
-	public Client updateCliebt(Client client) {
+	public Client updateClient(Client client) {
 		return clientRepository.save(client);
 	}
 
-	public void deleteClient(Client client) {
-		clientRepository.delete(client);
+	public void deleteClient(Long id) {
+		clientRepository.deleteById(id);
 	}
 
 	public void addProjectToClient(long idClient, long idProject) {
@@ -60,7 +60,7 @@ public class ClientServiceImp  {
 		Project project = projectServiceImp.getProjectById(idProject).orElse(null);
 		List<Project> projects = client.getProjects();
 		projects.add(project);
-		this.updateCliebt(client);
+		this.updateClient(client);
 		List<Client> clients = project.getClients();
 		clients.add(client);
 		projectServiceImp.updateProject(project);

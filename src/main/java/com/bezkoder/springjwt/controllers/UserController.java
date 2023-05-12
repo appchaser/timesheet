@@ -31,8 +31,7 @@ public class UserController {
 
 	@GetMapping("/usr/{idUser}")
 	@ResponseBody
-	public ResponseEntity<?> getById(@PathVariable(""
-			+ "idUser") long idUser){
+	public ResponseEntity<?> getById(@PathVariable("idUser") long idUser){
 		return ResponseEntity.ok(userServiceImp.getUserById(idUser));
 	}
 	@GetMapping("/all")
@@ -69,10 +68,11 @@ public class UserController {
 	public ResponseEntity<?> updateUser(@RequestBody User user){
 		return ResponseEntity.ok(userServiceImp.updateUser(user));
 	}
-	@DeleteMapping("/deleteUser")
+	
+	@DeleteMapping("/deleteUser/{id}")
 	@ResponseBody
-	public ResponseEntity<?> deleteUser(@RequestBody User user){
-		userServiceImp.deleteUser(user);
+	public ResponseEntity<?> deleteUser(@PathVariable Long id){
+		userServiceImp.deleteUser(id);
 		return ResponseEntity.ok("User deleted");
 	}
 	@PostMapping("/addusertoproject/{idUser}/{idProject}")

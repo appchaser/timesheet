@@ -66,8 +66,8 @@ public class ProjectServiceImp {
 		return projectRepository.save(project);
 	}
 
-	public void deleteProject(Project project) {
-		projectRepository.delete(project);
+	public void deleteProject(Long id) {
+		projectRepository.deleteById(id);
 	}
 
 	public void addActivityProject(long idActivity, long idProject) {

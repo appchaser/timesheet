@@ -68,10 +68,10 @@ public class ProjectController {
 		return ResponseEntity.ok(projectServiceImp.updateProject(project));
 	}
 
-	@DeleteMapping("/deleteproject")
+	@DeleteMapping("/deleteproject/{id}")
 	@ResponseBody
-	public ResponseEntity<?> deleteProject(@RequestBody Project project) {
-		projectServiceImp.deleteProject(project);
+	public ResponseEntity<?> deleteProject(@PathVariable Long id) {
+		projectServiceImp.deleteProject(id);
 		return ResponseEntity.ok("project deleted");
 	}
 

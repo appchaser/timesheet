@@ -59,8 +59,8 @@ public class ClientController {
 
 	@DeleteMapping("/deleteClient/{id}")
 	@ResponseBody
-	public ResponseEntity<?> deleteclient(@RequestBody Client client, @PathVariable Long id) {
-		clientServiceImp.deleteClient(client);
+	public ResponseEntity<?> deleteclient( @PathVariable Long id) {
+		clientServiceImp.deleteClient(id);
 		return ResponseEntity.ok("client Deleted");
 	}
 	
@@ -78,7 +78,7 @@ public class ClientController {
 
 	@PutMapping("/updateClient")
 	public ResponseEntity<?> updateClient(@RequestBody Client client) {
-		return ResponseEntity.ok(clientServiceImp.updateCliebt(client));
+		return ResponseEntity.ok(clientServiceImp.updateClient(client));
 
 	}
 

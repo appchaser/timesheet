@@ -36,9 +36,9 @@ public class Project {
 	private long id;
 
 	private String name;
-	@JsonIgnore
+	
 	private Date startDate;
-	@JsonIgnore
+	
 	private Date endDate;  
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
@@ -51,7 +51,7 @@ public class Project {
 	@JsonIgnore      
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Activity> activities;
-	
+	@JsonIgnore
 	@ElementCollection()
 	private List<timesheet> timesheets;
 	  public Project() {
