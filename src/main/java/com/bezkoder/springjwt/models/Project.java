@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,7 @@ import lombok.ToString;
 //@NoArgsConstructor
 @Entity
 @ToString
-public class Project {
+public class Project implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -55,15 +56,24 @@ public class Project {
 	@ElementCollection()
 	private List<timesheet> timesheets;
 	  public Project() {
-	        timesheets = new ArrayList<>();
+	        timesheets = new ArrayList<>(); 
 	    }
 
 	    public void addTimeSheet(timesheet timeSheet) {
 	        timesheets.add(timeSheet);
 	    }
-
+         
 	    public List<timesheet> getTimeSheets() {
 	        return timesheets;
+	    }
+	    public List<Client> getClients() {
+	        return clients;
+	    }
+	    public void setClients(List<Client> clients){
+	    	this.clients=clients;
+	    }
+	    public void addClient(Client client){
+	    	clients.add(client);
 	    }
 
 	    public void setTimeSheets(List<timesheet> timeSheets) {

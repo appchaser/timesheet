@@ -54,7 +54,7 @@ public class User {
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private Departement departement;
-	@NotBlank
+	@Nullable
 	@Size(max = 120)
 	private String password;
 

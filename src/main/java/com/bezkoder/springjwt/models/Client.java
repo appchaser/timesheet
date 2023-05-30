@@ -1,5 +1,6 @@
 package com.bezkoder.springjwt.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import net.minidev.json.annotate.JsonIgnore;
 
 @Getter
 @Setter
@@ -24,12 +26,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @ToString
-public class Client {
+public class Client implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
+		
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Project> projects;
 	
 	/*@ElementCollection()

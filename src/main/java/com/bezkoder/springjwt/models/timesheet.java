@@ -97,6 +97,7 @@ public class timesheet implements Serializable {
 	@Nullable
 	@ManyToOne
 	@JoinColumn(name = "client_id")
+	@JsonIgnore
 	private Client client;
 
 	@ManyToOne(cascade = CascadeType.ALL)

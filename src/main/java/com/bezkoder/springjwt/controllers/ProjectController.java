@@ -32,7 +32,7 @@ public class ProjectController {
 	@GetMapping("/{idProject}")
 	@ResponseBody
 	public ResponseEntity<?> getProjectById(@PathVariable("idProject") long idProject) {
-		return ResponseEntity.ok(projectServiceImp.getProjectById(idProject));
+		return ResponseEntity.ok(projectServiceImp.getProjectClients(idProject));
 	}
 	
 	@GetMapping("/getactivity/{id}")
@@ -45,7 +45,7 @@ public class ProjectController {
 	@ResponseBody
 	public ResponseEntity<ProjectDTO> getProjByID(@PathVariable("id") int id){
 		ProjectDTO dep = projectServiceImp.getproject(id);
-		                  
+		                    
 		return new ResponseEntity<ProjectDTO>(dep, HttpStatus.OK);
 	     
 		}
@@ -53,7 +53,7 @@ public class ProjectController {
 	@GetMapping("/all")
 	@ResponseBody
 	public ResponseEntity<?> getAll() {
-		return ResponseEntity.ok(projectServiceImp.getAll());
+		return ResponseEntity.ok(projectServiceImp.getAllProjectClient());
 	}
 
 	@PostMapping("/addproject")
@@ -82,4 +82,6 @@ public class ProjectController {
 		projectServiceImp.addActivityProject(idActivity, idProject);
 		return ResponseEntity.ok("activity affected to project" );
 	}
+	
+	
 }
